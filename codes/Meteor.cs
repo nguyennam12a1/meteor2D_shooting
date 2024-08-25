@@ -6,6 +6,16 @@ public partial class Meteor : Area2D
 	private int HP = 100;
 	private Vector2 Direction = Vector2.Down;
 	private float Speed = 300;
+
+	public Vector2 GetDirection()
+	{
+		return this.Direction;
+	}
+
+	public void SetDirection(Vector2 direction)
+	{
+		this.Direction = direction;
+	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 
 public partial class MeteorRain : Node2D
 {
@@ -28,7 +29,8 @@ public partial class MeteorRain : Node2D
 		AddChild(meteor);
 
 		// Get random angle for the meteor
-		float rotation_angle = GD.Randi() % 50;
+		float rotation_angle = GD.RandRange(-1, 1);
+		Vector2 newDirection = new Vector2(rotation_angle, (float)1.0);
 
 		// Get random speed for each meteor
 		float speed = GD.RandRange(100, 300);
@@ -37,5 +39,7 @@ public partial class MeteorRain : Node2D
 
 		// Update meteor's spawn location
 		meteor.Position = position;
+		// Change falling direction
+		meteor.SetDirection(newDirection);
 	}
 }
