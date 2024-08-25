@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+        {
+            "name": "Launch Editor",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "D:/Godot/Godot_v4.3/Godot_v4.3-stable_mono_win64.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "args": [
+                "--path",
+                "${workspaceRoot}",
+                "--editor"
+            ]
+        },
+        {
+            "name": "Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "console": "internalConsole",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build",
+            "program": "D:/Godot/Godot_v4.3/Godot_v4.3-stable_mono_win64.exe",
+            // See which arguments are available here:
+            // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
+            "args": [
+                "--path",
+                "${workspaceRoot}"
+            ],
+            "requireExactSource": false,
+        },
+        {
+            "name": "Launch (Select Scene)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "program": "D:/Godot/Godot_v4.3/Godot_v4.3-stable_mono_win64.exe",
+            // See which arguments are available here:
+            // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
+            "args": [
+                "--path",
+                "${workspaceRoot}",
+                "${command:godot.csharp.getLaunchScene}"
+            ]
+        },
+        {
+            "name": "Attach",
+            "type": "coreclr",
+            "request": "attach",
+        }
+    ]
+}

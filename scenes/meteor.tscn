@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://chu3uhbvvxm42"]
+
+[ext_resource type="Script" path="res://codes/Meteor.cs" id="1_8o61p"]
+[ext_resource type="Texture2D" uid="uid://dlsm6gs04woq5" path="res://PNG/Meteors/meteorBrown_big1.png" id="1_imelm"]
+
+[node name="Meteor" type="Area2D"]
+script = ExtResource("1_8o61p")
+
+[node name="Meteor" type="Sprite2D" parent="."]
+texture = ExtResource("1_imelm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-382, -140)
+polygon = PackedVector2Array(350, 101, 408, 102, 431, 138, 419, 172, 393, 172, 363, 179, 333, 150)
+
+[connection signal="area_entered" from="." to="." method="OnLaserEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
