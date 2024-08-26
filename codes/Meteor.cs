@@ -12,10 +12,8 @@ public partial class Meteor : Area2D
 	// Default moving speed for each Meteor.
 	private float Speed = 0;
 
-	public float GetSpeed()
-	{
-		return this.Speed;
-	}
+	[Signal]
+	public delegate void PlayerHitEventHandler();
 
 	public void SetSpeed(float speed)
 	{
@@ -32,21 +30,30 @@ public partial class Meteor : Area2D
 		this.Direction = direction;
 	}
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	public override void _Ready() { }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Set Velocity for each instance of Meteor.
 		Vector2 velocity = this.Speed * this.Direction * (float)delta;
+
+		// Update movement
 		Position += velocity;
 	}
 
-	// When the Meteor hits the Player body object, finish the game.
+	// When the Meteor hits the Player body object, signal the Level.tscn scene and delegate from there.
 	private void OnBodyEntered(Node2D CollisionObject)
 	{
-		Console.WriteLine("GAME OVER DUDE...");
+		// Check if the collided object was of type "CharacterBody2D", which is the class type Player object is built on.
+		if (CollisionObject.IsClass("CharacterBody2D"))
+		{
+			Console.WriteLine("We got him");
+
+			// Send the signal. Signal can also be declared in code as class's attribute. So you can reference it anywhere.
+			// When connect custom signal to custom handling function, only the words before "EventHandler" are cut off and used as Signal name.
+			EmitSignal(SignalName.PlayerHit);
+		}
 	}
 
 	/** 
@@ -55,9 +62,9 @@ public partial class Meteor : Area2D
 	**/
 	private void OnLaserEntered(Area2D CollisionObject)
 	{
-		Console.WriteLine("The laser has hit the meteor");
 		// Reduce HP
-		this.HP -= 25;
+		this.HP -= 100;
+		Console.WriteLine(CollisionObject);
 		if (this.HP == 0)
 		{
 			// Terminate the instance's process when it's out of the current frame.

@@ -43,4 +43,11 @@ public partial class Laser : Area2D
 		// Update laser's position/Laser moving up at given speed.
 		Position += this.Velocity * calculated_delta;
 	}
+
+	// When the laset hit an object, stop the laser.
+	private void OnBodyEntered(Node2D collisionObject)
+	{
+		Console.WriteLine("Hitting the object, and the type is:" + collisionObject.GetType());
+		QueueFree();
+	}
 }

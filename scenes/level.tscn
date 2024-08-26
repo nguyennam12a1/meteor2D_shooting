@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctbjghyofrwfd"]
+[gd_scene load_steps=7 format=3 uid="uid://ctbjghyofrwfd"]
 
 [ext_resource type="Texture2D" uid="uid://lcff5oih6vmm" path="res://Backgrounds/purple.png" id="1_lc6o1"]
 [ext_resource type="Script" path="res://codes/Level.cs" id="1_ysisg"]
 [ext_resource type="PackedScene" uid="uid://dmxsh7nueibc3" path="res://scenes/player.tscn" id="2_1675b"]
-[ext_resource type="PackedScene" uid="uid://ccpsm4of00u1k" path="res://scenes/meteor_rain.tscn" id="4_gvfvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogpg5"]
 size = Vector2(259.342, 23.0796)
@@ -17,46 +16,48 @@ size = Vector2(255.554, 20)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ysisg")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576.5, 323.5)
 scale = Vector2(4.48828, 2.50391)
 texture = ExtResource("1_lc6o1")
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_1675b")]
 position = Vector2(608, 349)
+metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Node2D" parent="."]
+[node name="Borders (Area2D)" type="Node2D" parent="."]
 position = Vector2(576.5, 323.5)
 scale = Vector2(4.48828, 2.50391)
+metadata/_edit_lock_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Area2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders (Area2D)"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D"]
 position = Vector2(1.67102, -129.997)
 shape = SubResource("RectangleShape2D_ogpg5")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Area2D"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders (Area2D)"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D3"]
 position = Vector2(126.886, -13.3791)
 shape = SubResource("RectangleShape2D_bdda7")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Area2D"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders (Area2D)"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D2"]
 position = Vector2(-128.223, -2.59594)
 shape = SubResource("RectangleShape2D_bdda7")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="Area2D"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders (Area2D)"]
 disable_mode = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D4"]
 position = Vector2(0, 119.713)
 shape = SubResource("RectangleShape2D_hqkap")
 
-[node name="MeteorRain" parent="." instance=ExtResource("4_gvfvb")]
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.25
 
-[connection signal="timeout" from="Timer" to="MeteorRain" method="OnTimerRainOut"]
 [connection signal="Shoot" from="Player" to="." method="OnPlayerShoot"]
+[connection signal="timeout" from="SpawnTimer" to="." method="OnTimerTimeOut"]
