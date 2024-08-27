@@ -64,7 +64,6 @@ public partial class Meteor : Area2D
 	{
 		// Reduce HP
 		this.HP -= 100;
-		Console.WriteLine(CollisionObject);
 		if (this.HP == 0)
 		{
 			// Terminate the instance's process when it's out of the current frame.

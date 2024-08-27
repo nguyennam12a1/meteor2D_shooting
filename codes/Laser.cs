@@ -47,7 +47,13 @@ public partial class Laser : Area2D
 	// When the laset hit an object, stop the laser.
 	private void OnBodyEntered(Node2D collisionObject)
 	{
-		Console.WriteLine("Hitting the object, and the type is:" + collisionObject.GetType());
+		Console.WriteLine("Laser is hitting the object, object type is:" + collisionObject.GetType());
+		QueueFree();
+	}
+
+	private void OnAreaEntered(Area2D collisionObject)
+	{
+		Console.WriteLine("Hitting the meteor and destroy laser bullet after hitting the target!");
 		QueueFree();
 	}
 }
