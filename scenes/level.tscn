@@ -34,7 +34,7 @@ metadata/_edit_lock_ = true
 [node name="StaticBody2D" type="StaticBody2D" parent="Borders (Area2D)"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D"]
-position = Vector2(1.67102, -129.997)
+position = Vector2(1.22542, -128.799)
 shape = SubResource("RectangleShape2D_ogpg5")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Borders (Area2D)"]
@@ -61,5 +61,17 @@ wait_time = 0.25
 
 [node name="Meteors" type="Node2D" parent="."]
 
+[node name="Lasers" type="Node2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 161.0
+offset_top = 353.0
+offset_right = 424.0
+offset_bottom = 469.0
+scale = Vector2(1.17532, 1.61599)
+text = "LMAO"
+metadata/_edit_group_ = true
+
 [connection signal="Shoot" from="Player" to="." method="OnPlayerShoot"]
 [connection signal="timeout" from="SpawnTimer" to="." method="OnTimerTimeOut"]
+[connection signal="pressed" from="Button" to="." method="OnStartGame"]

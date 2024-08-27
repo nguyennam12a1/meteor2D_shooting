@@ -73,7 +73,7 @@ public partial class Level : Node2D
 	private void OnPlayerShoot(PackedScene LaserScene, float direction, Vector2 position)
 	{
 		var bullet = LaserScene.Instantiate<Laser>();
-		AddChild(bullet);
+		GetNode<Node2D>("Lasers").AddChild(bullet);
 
 		// Move the firing position to be a little bit above the head of Player's object, so it looks more realistic.
 		bullet.Position = position + Vector2.Up * 70;
@@ -82,8 +82,21 @@ public partial class Level : Node2D
 	// When the player got hit by the Meteor, destroy the player.
 	private void OnPlayerHit()
 	{
+		this.GameOver();
+	}
+
+	private void GameOver()
+	{
 		GetNode<CharacterBody2D>("Player").QueueFree();
 		GetNode<Timer>("SpawnTimer").Stop();
 		GetNode<Node2D>("Meteors").QueueFree();
+		GetNode<Node2D>("Lasers").QueueFree();
+
+	}
+
+	private void OnStartGame()
+	{
+		GetNode<CharacterBody2D>("Player").QueueFree();
+		GetNode<Timer>("SpawnTimer").Start();
 	}
 }
