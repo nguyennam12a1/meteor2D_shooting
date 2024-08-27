@@ -59,5 +59,7 @@ shape = SubResource("RectangleShape2D_hqkap")
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.25
 
+[node name="Meteors" type="Node2D" parent="."]
+
 [connection signal="Shoot" from="Player" to="." method="OnPlayerShoot"]
 [connection signal="timeout" from="SpawnTimer" to="." method="OnTimerTimeOut"]

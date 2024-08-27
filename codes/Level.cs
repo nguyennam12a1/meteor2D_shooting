@@ -40,8 +40,6 @@ public partial class Level : Node2D
 	{
 		// Console.WriteLine("Timer has been called!");
 		var meteor = MeteorScene.Instantiate<Meteor>();
-		// Add Meteor instance to the parent tree
-		AddChild(meteor);
 
 		// Get random angle for the meteor
 		float rotation_angle = GD.RandRange(-1, 1);
@@ -67,6 +65,8 @@ public partial class Level : Node2D
 		// Connect Meteor hit signal to a custom function declared in the Level.tscn scene
 		meteor.PlayerHit += OnPlayerHit;
 
+		// Add Meteor instance to another child node
+		GetNode<Node2D>("Meteors").AddChild(meteor);
 	}
 
 	// When mouse left-click detected, fire laser bullet in the given direction.
@@ -82,6 +82,8 @@ public partial class Level : Node2D
 	// When the player got hit by the Meteor, destroy the player.
 	private void OnPlayerHit()
 	{
-		GetNode<CharacterBody2D>("Player").Hide();
+		GetNode<CharacterBody2D>("Player").QueueFree();
+		GetNode<Timer>("SpawnTimer").Stop();
+		GetNode<Node2D>("Meteors").QueueFree();
 	}
 }
