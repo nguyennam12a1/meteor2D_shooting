@@ -50,10 +50,10 @@ public partial class Meteor : Area2D
 	}
 
 	// When the Meteor hits the Player body object, signal the Level.tscn scene and delegate from there.
-	private void OnBodyEntered(Node2D CollisionObject)
+	private void OnBodyEntered(Node2D collisionObject)
 	{
 		// Check if the collided object was of type "CharacterBody2D", which is the class type Player object is built on.
-		if (CollisionObject.IsClass("CharacterBody2D"))
+		if (collisionObject.IsClass("CharacterBody2D"))
 		{
 			Console.WriteLine("We got him");
 
