@@ -15,10 +15,8 @@ public partial class Player : CharacterBody2D
 	// Default player's movement speed
 	private const float _Speed = 300.0f;
 
-	// 
-	public PackedScene LaserScene = GD.Load<PackedScene>("res://scenes/laser.tscn");
 	[Signal]
-	public delegate void ShootEventHandler(PackedScene LaserScene, float direction, Vector2 position);
+	public delegate void ShootEventHandler(float direction, Vector2 position);
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() { }
@@ -38,7 +36,7 @@ public partial class Player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		//Get player's direction
-		Vector2 direction = Input.GetVector("left", "right", "up", "down");
+		Vector2 direction = Input.GetVector(Constants.USER_INPUT_LEFT, Constants.USER_INPUT_RIGHT, Constants.USER_INPUT_UP, Constants.USER_INPUT_DOWN);
 		Velocity = direction * _Speed;
 
 		// Enable movement

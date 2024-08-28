@@ -14,13 +14,14 @@ public partial class Level : Node2D
 		GD.Randomize();
 		GD.Seed(123);
 	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		InitRandomizer();
 		// Load Meteor Scene but not initialize it.
-		MeteorScene = GD.Load<PackedScene>("res://scenes/meteor.tscn");
-		LaserScene = GD.Load<PackedScene>("res://scenes/laser.tscn");
+		MeteorScene = GD.Load<PackedScene>(Constants.METEOR_SCENE);
+		LaserScene = GD.Load<PackedScene>(Constants.LASER_SCENE);
 
 		// Get the _size of the main screen
 		_size = GetViewport().GetVisibleRect().Size;
@@ -96,13 +97,13 @@ public partial class Level : Node2D
 		GetNode<Node2D>("Lasers").QueueFree();
 
 		// Load GameOver scene
-		GetTree().ChangeSceneToFile("res://scenes/gameoverui.tscn");
+		GetTree().ChangeSceneToFile(Constants.GAME_OVER_SCENE);
 	}
 
 	// Start a new game after game over.
 	private void OnStartGame()
 	{
-		GetTree().ChangeSceneToFile("res://scenes/level.tscn");
+		GetTree().ChangeSceneToFile(Constants.MAIN_LEVEL_SCENE);
 	}
 	private void UpdatePlayerScore()
 	{
