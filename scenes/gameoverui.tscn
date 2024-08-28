@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0gtsw6y5agvk"]
+
+[ext_resource type="Texture2D" uid="uid://lcff5oih6vmm" path="res://Backgrounds/purple.png" id="1_d08d1"]
+[ext_resource type="Script" path="res://codes/GameOverUI.cs" id="1_fir3i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_000el"]
+font_size = 18
+
+[node name="GameOverUI" type="Node2D"]
+script = ExtResource("1_fir3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(639.5, 359)
+scale = Vector2(4.98828, 2.80469)
+texture = ExtResource("1_d08d1")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -63.4488
+offset_top = -29.2368
+offset_right = 79.5512
+offset_bottom = -6.23677
+text = "YOU SUCK"
+label_settings = SubResource("LabelSettings_000el")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 502.0
+offset_top = 504.0
+offset_right = 765.0
+offset_bottom = 620.0
+scale = Vector2(1.17532, 1.61599)
+text = "Play Again"
+metadata/_edit_group_ = true
+
+[connection signal="pressed" from="Button" to="." method="OnRestartButtonPressed"]

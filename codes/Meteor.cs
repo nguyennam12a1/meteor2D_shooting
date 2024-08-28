@@ -6,28 +6,35 @@ public partial class Meteor : Area2D
 	// Default HP for each Meteor instance. When the HP goes down to 0, the meteor will be destroyed.
 	private int HP = 100;
 
-	// Default falling direction for each Meteor. From Top -> Bottom.
-	private Vector2 Direction = Vector2.Down;
+	// Default falling _Direction for each Meteor. From Top -> Bottom.
+	private Vector2 _Direction = Vector2.Down;
 
-	// Default moving speed for each Meteor.
-	private float Speed = 0;
+	// Default moving _Speed for each Meteor.
+	private float _Speed = 0;
 
 	[Signal]
 	public delegate void PlayerHitEventHandler();
 
+	[Signal]
+	public delegate void LaserHitEventHandler();
+
+	public float GetSpeed()
+	{
+		return this._Speed;
+	}
 	public void SetSpeed(float speed)
 	{
-		this.Speed = speed;
+		this._Speed = speed;
 	}
 
 	public Vector2 GetDirection()
 	{
-		return this.Direction;
+		return this._Direction;
 	}
 
 	public void SetDirection(Vector2 direction)
 	{
-		this.Direction = direction;
+		this._Direction = direction;
 	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() { }
@@ -36,7 +43,7 @@ public partial class Meteor : Area2D
 	public override void _Process(double delta)
 	{
 		// Set Velocity for each instance of Meteor.
-		Vector2 velocity = this.Speed * this.Direction * (float)delta;
+		Vector2 velocity = this._Speed * this._Direction * (float)delta;
 
 		// Update movement
 		Position += velocity;
@@ -66,8 +73,15 @@ public partial class Meteor : Area2D
 		this.HP -= 100;
 		if (this.HP == 0)
 		{
+			EmitSignal(SignalName.LaserHit);
 			// Terminate the instance's process when it's out of the current frame.
 			QueueFree();
 		}
+	}
+
+	// Destroy Meteor instance when out of screen to save memory.
+	private void OnMeteorExitOnScreen()
+	{
+		QueueFree();
 	}
 }

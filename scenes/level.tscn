@@ -5,26 +5,24 @@
 [ext_resource type="PackedScene" uid="uid://dmxsh7nueibc3" path="res://scenes/player.tscn" id="2_1675b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogpg5"]
-size = Vector2(259.342, 23.0796)
+size = Vector2(287.861, 23.0796)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdda7"]
-size = Vector2(24.8982, 253.404)
+size = Vector2(24.8982, 285.953)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqkap"]
-size = Vector2(255.554, 20)
+size = Vector2(283.85, 20)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ysisg")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(576.5, 323.5)
-scale = Vector2(4.48828, 2.50391)
+position = Vector2(640, 360)
+scale = Vector2(5, 2.8125)
 texture = ExtResource("1_lc6o1")
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_1675b")]
-position = Vector2(608, 349)
-metadata/_edit_lock_ = true
+position = Vector2(640, 600)
 
 [node name="Borders (Area2D)" type="Node2D" parent="."]
 position = Vector2(576.5, 323.5)
@@ -34,26 +32,26 @@ metadata/_edit_lock_ = true
 [node name="StaticBody2D" type="StaticBody2D" parent="Borders (Area2D)"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D"]
-position = Vector2(1.22542, -128.799)
+position = Vector2(14.8164, -128.799)
 shape = SubResource("RectangleShape2D_ogpg5")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Borders (Area2D)"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D3"]
-position = Vector2(126.886, -13.3791)
+position = Vector2(156.073, 14.9766)
 shape = SubResource("RectangleShape2D_bdda7")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Borders (Area2D)"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D2"]
-position = Vector2(-128.223, -2.59594)
+position = Vector2(-128.223, 14.1778)
 shape = SubResource("RectangleShape2D_bdda7")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Borders (Area2D)"]
 disable_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders (Area2D)/StaticBody2D4"]
-position = Vector2(0, 119.713)
+position = Vector2(14.1481, 155.956)
 shape = SubResource("RectangleShape2D_hqkap")
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -63,15 +61,5 @@ wait_time = 0.25
 
 [node name="Lasers" type="Node2D" parent="."]
 
-[node name="Button" type="Button" parent="."]
-offset_left = 161.0
-offset_top = 353.0
-offset_right = 424.0
-offset_bottom = 469.0
-scale = Vector2(1.17532, 1.61599)
-text = "LMAO"
-metadata/_edit_group_ = true
-
 [connection signal="Shoot" from="Player" to="." method="OnPlayerShoot"]
 [connection signal="timeout" from="SpawnTimer" to="." method="OnTimerTimeOut"]
-[connection signal="pressed" from="Button" to="." method="OnStartGame"]

@@ -14,5 +14,8 @@ texture = ExtResource("1_imelm")
 position = Vector2(-382, -140)
 polygon = PackedVector2Array(350, 101, 408, 102, 431, 138, 419, 172, 393, 172, 363, 179, 333, 150)
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="OnLaserEntered"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="OnMeteorExitOnScreen"]

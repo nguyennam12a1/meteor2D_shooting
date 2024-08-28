@@ -12,8 +12,10 @@ NOTES:
 */
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	// Default player's movement speed
+	private const float _Speed = 300.0f;
+
+	// 
 	public PackedScene LaserScene = GD.Load<PackedScene>("res://scenes/laser.tscn");
 	[Signal]
 	public delegate void ShootEventHandler(PackedScene LaserScene, float direction, Vector2 position);
@@ -27,8 +29,7 @@ public partial class Player : CharacterBody2D
 		{
 			if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.Pressed)
 			{
-				EmitSignal(SignalName.Shoot, LaserScene, Rotation, Position);
-				// Console.WriteLine("Bullet Position" + bullet.Position);
+				EmitSignal(SignalName.Shoot, Rotation, Position);
 			}
 		}
 	}
@@ -36,9 +37,11 @@ public partial class Player : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//Get player's direction
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
-		Velocity = direction * Speed;
+		Velocity = direction * _Speed;
+
+		// Enable movement
 		MoveAndSlide();
-		// Console.WriteLine(Position);
 	}
 }

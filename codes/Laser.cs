@@ -3,35 +3,36 @@ using System;
 
 public partial class Laser : Area2D
 {
-	//Default speed of the laser bullet.
-	private float Speed = 1000;
-	// Default firing direction
-	private Vector2 Direction = Vector2.Up;
+	//Default _Speed of the laser bullet.
+	private float _Speed = 1000;
+	// Default firing _Direction
+	private Vector2 _Direction = Vector2.Up;
 	// Called when the node enters the scene tree for the first time.
 
-	private Vector2 Velocity = Vector2.Zero;
+	private Vector2 _Velocity = Vector2.Zero;
+
 	public void SetSpeed(float speed)
 	{
-		this.Speed = speed;
+		this._Speed = speed;
 	}
 
 	public float GetSpeed()
 	{
-		return this.Speed;
+		return this._Speed;
 	}
 
 	public void SetVelocity(Vector2 velocity)
 	{
-		this.Velocity = velocity;
+		this._Velocity = velocity;
 	}
 
 	public Vector2 GetVelocity()
 	{
-		return this.Velocity;
+		return this._Velocity;
 	}
 	public override void _Ready()
 	{
-		Vector2 velocity = this.Speed * this.Direction;
+		Vector2 velocity = this._Speed * this._Direction;
 		SetVelocity(velocity);
 	}
 
@@ -40,8 +41,8 @@ public partial class Laser : Area2D
 	{
 		float calculated_delta = (float)delta;
 
-		// Update laser's position/Laser moving up at given speed.
-		Position += this.Velocity * calculated_delta;
+		// Update laser's position/Laser moving up at given Speed.
+		Position += this._Velocity * calculated_delta;
 	}
 
 	// When the laset hit an object, stop the laser.
@@ -51,6 +52,7 @@ public partial class Laser : Area2D
 		QueueFree();
 	}
 
+	// Destroy Laser instance when hitting a Meteor object
 	private void OnAreaEntered(Area2D collisionObject)
 	{
 		Console.WriteLine("Hitting the meteor and destroy laser bullet after hitting the target!");
