@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c44om7mgjwsmq"]
+[gd_scene load_steps=5 format=3 uid="uid://c44om7mgjwsmq"]
 
 [ext_resource type="Script" path="res://codes/WelcomeScreen.cs" id="1_10x0j"]
 [ext_resource type="Texture2D" uid="uid://db0pqrmg88ws" path="res://Backgrounds/blue.png" id="2_m2bpm"]
 [ext_resource type="AudioStream" uid="uid://b7r7oxgumup6t" path="res://audio/space-ship-bridge-loop.mp3" id="3_1rlnn"]
+[ext_resource type="FontFile" uid="uid://cyvnl4ghjrgfx" path="res://fonts/SpaceGames-K7zKD.otf" id="3_4xpne"]
 
 [node name="WelcomeScreen" type="CanvasLayer"]
 script = ExtResource("1_10x0j")
@@ -22,30 +23,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -149.0
-offset_top = -87.5
-offset_right = 149.0
-offset_bottom = 87.5
+offset_left = -364.0
+offset_top = -87.0
+offset_right = 365.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_4xpne")
+theme_override_font_sizes/font_size = 40
 text = "Welcome so Meteors Shooting"
 horizontal_alignment = 1
 
 [node name="StartGameBtn" type="Button" parent="."]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -31.0
-offset_right = 23.0
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = 71.0
+offset_right = 112.0
+offset_bottom = 136.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4xpne")
+theme_override_font_sizes/font_size = 30
 text = "Start
 "
-metadata/_edit_group_ = true
 
 [node name="WelcomeAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1rlnn")
