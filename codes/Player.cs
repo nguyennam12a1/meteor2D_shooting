@@ -28,6 +28,9 @@ public partial class Player : CharacterBody2D
 			if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.Pressed)
 			{
 				EmitSignal(SignalName.Shoot, Rotation, Position);
+
+				// Play the laser sound when firing
+				GetNode<AudioStreamPlayer2D>(Constants.LASER_FIRING_AUDIO).Play();
 			}
 		}
 	}

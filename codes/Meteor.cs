@@ -15,9 +15,6 @@ public partial class Meteor : Area2D
 	[Signal]
 	public delegate void PlayerHitEventHandler();
 
-	[Signal]
-	public delegate void LaserHitEventHandler();
-
 	public float GetSpeed()
 	{
 		return this._Speed;
@@ -53,10 +50,7 @@ public partial class Meteor : Area2D
 	private void OnBodyEntered(Node2D collisionObject)
 	{
 		// Check if the collided object was of type "CharacterBody2D", which is the class type Player object is built on.
-		if (collisionObject.IsClass("CharacterBody2D"))
 		{
-			Console.WriteLine("We got him");
-
 			// Send the signal. Signal can also be declared in code as class's attribute. So you can reference it anywhere.
 			// When connect custom signal to custom handling function, only the words before "EventHandler" are cut off and used as Signal name.
 			EmitSignal(SignalName.PlayerHit);
@@ -70,10 +64,11 @@ public partial class Meteor : Area2D
 	private void OnLaserEntered(Area2D CollisionObject)
 	{
 		// Reduce HP
-		this.HP -= 100;
+		this.HP -= 50;
 		if (this.HP == 0)
 		{
-			EmitSignal(SignalName.LaserHit);
+			// Add 1 point for each meteor destroyed by Laser shot.
+			PlayerVariables.Instance.Score += 1;
 			// Terminate the instance's process when it's out of the current frame.
 			QueueFree();
 		}

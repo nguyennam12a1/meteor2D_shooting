@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0gtsw6y5agvk"]
+
+[ext_resource type="Script" path="res://codes/GameOverUI.cs" id="1_lav8l"]
+[ext_resource type="FontFile" uid="uid://cyvnl4ghjrgfx" path="res://fonts/SpaceGames-K7zKD.otf" id="2_itrul"]
+[ext_resource type="AudioStream" uid="uid://fg8nus43odku" path="res://audio/game_over.mp3" id="3_naf06"]
+
+[node name="GameOverUI" type="Node2D"]
+script = ExtResource("1_lav8l")
+
+[node name="RestartBtn" type="Button" parent="."]
+offset_left = 502.0
+offset_top = 504.0
+offset_right = 765.0
+offset_bottom = 566.0
+scale = Vector2(1.17532, 1.61599)
+theme_override_fonts/font = ExtResource("2_itrul")
+text = "Play Again"
+
+[node name="VNotificationsContainer" type="VBoxContainer" parent="."]
+offset_left = 328.0
+offset_top = 261.0
+offset_right = 924.0
+offset_bottom = 322.0
+
+[node name="GameOverMessage" type="Label" parent="VNotificationsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_itrul")
+theme_override_font_sizes/font_size = 50
+text = "MISSION FAILED"
+
+[node name="GameOverScore" type="Label" parent="VNotificationsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_itrul")
+theme_override_font_sizes/font_size = 35
+text = "SCORE:"
+
+[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_naf06")
+
+[connection signal="pressed" from="RestartBtn" to="." method="OnRestartButtonPressed"]

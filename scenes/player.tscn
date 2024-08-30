@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmxsh7nueibc3"]
+[gd_scene load_steps=4 format=3 uid="uid://dmxsh7nueibc3"]
 
 [ext_resource type="Texture2D" uid="uid://bohjden0bc41" path="res://PNG/playerShip1_red.png" id="1_mcecj"]
 [ext_resource type="Script" path="res://codes/Player.cs" id="1_rquby"]
+[ext_resource type="AudioStream" uid="uid://cha7bnndforrl" path="res://audio/laser-shot-ingame.mp3" id="3_jrbc6"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 0
 slide_on_ceiling = false
 script = ExtResource("1_rquby")
 
@@ -14,3 +14,6 @@ texture = ExtResource("1_mcecj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-7, -37, 7, -37, 12, -13, 34, 0, 46, -5, 45, 21, 14, 28, 9, 37, -8, 37, -13, 28, -43, 20, -45, -5, -37, 3, -13, -11)
+
+[node name="LaserFiringAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jrbc6")

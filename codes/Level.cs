@@ -29,6 +29,7 @@ public partial class Level : Node2D
 		// Start the Meteor Spawn and also, the game
 		var timer = GetNode<Timer>("SpawnTimer");
 		timer.Start();
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,8 +65,6 @@ public partial class Level : Node2D
 
 		// Connect Meteor hit signal to a custom function declared in the Level.tscn scene
 		meteor.PlayerHit += OnPlayerHit;
-
-		meteor.LaserHit += UpdatePlayerScore;
 
 		// Add Meteor instance to another child node
 		GetNode<Node2D>("Meteors").AddChild(meteor);
@@ -104,10 +103,5 @@ public partial class Level : Node2D
 	private void OnStartGame()
 	{
 		GetTree().ChangeSceneToFile(Constants.MAIN_LEVEL_SCENE);
-	}
-	private void UpdatePlayerScore()
-	{
-		PlayerVariables.Instance.Score += 1;
-		Console.WriteLine(PlayerVariables.Instance.Score);
 	}
 }

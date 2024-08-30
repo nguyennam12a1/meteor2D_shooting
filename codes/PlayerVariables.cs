@@ -9,5 +9,6 @@ public partial class PlayerVariables : Node
     public override void _Ready()
     {
         Instance = this;
+        this.Score = 0;
     }
 }
