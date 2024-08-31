@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class GameOverUI : Node2D
+public partial class GameOverUI : CanvasLayer
 {
 
 	// Called when the node enters the scene tree for the first time.

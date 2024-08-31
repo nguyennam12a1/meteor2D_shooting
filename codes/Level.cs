@@ -90,10 +90,10 @@ public partial class Level : Node2D
 	private void GameOver()
 	{
 		// Destroy unused nodes
-		GetNode<CharacterBody2D>("Player").QueueFree();
+		GetNode<CharacterBody2D>("Player").CallDeferred("queue_free");
 		GetNode<Timer>("SpawnTimer").Stop();
-		GetNode<Node2D>("Meteors").QueueFree();
-		GetNode<Node2D>("Lasers").QueueFree();
+		GetNode<Node2D>("Meteors").CallDeferred("queue_free");
+		GetNode<Node2D>("Lasers").CallDeferred("queue_free");
 
 		// Load GameOver scene
 		GetTree().ChangeSceneToFile(Constants.GAME_OVER_SCENE);
